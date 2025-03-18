@@ -1,15 +1,29 @@
-<div class="bg-Gris-Sombre text-Blanc font-Work-Sans">
-    <div class="bg-Noir flex justify-end h-11 px-12 text-Gris-claire gap-6 items-center text-xs">
+---
+import { Image } from 'astro:assets';
+import IconePrincipal from './img/IconePrincipal.svg'
+import Planette from './img/Planette.png'
+import Arrow from './img/Arrow.svg'
+
+---
+<div class="bg-Gris-Sombre text-Blanc font-Work-Sans shadow-xl fixed w-full z-50">
+    <div class="bg-Noir flex justify-end h-11 px-12 text-Gris-claire gap-6 items-center text-sm">
         <nav class="flex gap-12 uppercase">
             <a>à propos</a>
             <a>aide</a>
             <a>paramétre</a>
         </nav>
         <div class="bg-Gris-claire w-0.5 h-3"></div>
-        <p>FR</p>
+        <div class="flex gap-1 items-center">
+            <Image src={Planette} class="w-4 h-4" alt="Une étoilee" />
+            <p>FR</p>
+            <Image src={Arrow} class="w-2.5" alt="Une étoilee" />
+        </div>
     </div>
     <div class="flex justify-between items-center px-12 h-20">
-        <h1 class="uppercase font-semibold text-3xl">Syminty</h1>
+        <div class="flex items-center gap-3">
+            <Image src={IconePrincipal} class="w-12" alt="Une étoilee" />
+            <h1 class="uppercase font-semibold text-3xl">Syminty</h1>
+        </div>
         <nav class="flex gap-10 items-center">
             <a>Musique</a>
             <a>Concerts</a>
