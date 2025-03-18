@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer utilities{
+    .lien{
+        @apply text-purple-500 font-bold underline;
+    }
+}

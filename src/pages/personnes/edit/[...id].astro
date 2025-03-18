@@ -1,0 +1,124 @@
+---
+import { Debug } from "astro:components";
+import Layout from "../../../layouts/Layout.astro";
+import {
+  PersonnesNationaliteOptions,
+  type PersonnesResponse,
+} from "../../../pocketbase-typegen";
+import { PersonnesProfessionOptions } from "../../../pocketbase-typegen";
+import GithubSlugger from "github-slugger";
+import type { ClientResponseError } from "pocketbase";
+import { formatDate } from "../../../utilitaires";
+
+const slugger = new GithubSlugger();
+
+export const prerender = false;
+
+const id = Astro.params.id;
+let message;
+const pb = Astro.locals.pb;
+let personne = {} as PersonnesResponse;
+
+if (id) {
+  personne = await pb
+    .collection("personnes")
+    .getOne(id)
+    .catch((error) => {
+      console.error("erreur à la recup de la personne", id, error);
+      message = (error as ClientResponseError).message;
+      return {} as PersonnesResponse;
+    });
+}
+
+if (Astro.request.method === "POST") {
+  const data = await Astro.request.formData();
+
+  const personne = await (
+    id
+      ? pb.collection("personnes").update(id, data)
+      : pb.collection("personnes").create(data)
+  ).catch((error) => {
+    console.error("erreur à la sauvegarde de la personne", id, error);
+    message = (error as ClientResponseError).message;
+  });
+  if (personne) {
+    return Astro.redirect(
+      `/personnes/${personne.id}-${encodeURIComponent(personne.nom)}`
+    );
+  }
+}
+
+
+---
+
+<Layout pageTitle="edit personne">
+  <!-- <Debug value={personne} /> -->
+  {message && <p class="text-red-500">Erreur : {message}</p>}
+  <h1>Edit de Personne</h1>
+  <form class="*:contents grid grid-cols-2" method="post">
+    <input type="hidden" name="id" value={personne.id} />
+    <label>
+      date de deces
+      <input
+        type="date"
+        name="dateDeces"
+        value={formatDate(personne.dateDeces)}
+      />
+    </label>
+    <label>
+      date de Naissance
+      <input
+        type="date"
+        name="dateNaissance"
+        value={formatDate(personne.dateNaissance)}
+      />
+    </label>
+    <label>
+      Lieu de décès
+      <input type="text" name="lieuDeces" value={personne.lieuDeces} />
+    </label>
+    <label>
+      Lieu de Naissance
+      <input type="text" name="lieuNaissance" value={personne.lieuNaissance} />
+    </label>
+    <label>
+      Nom
+      <input required type="text" name="nom" value={personne.nom} />
+    </label>
+    <label>
+      Prenom
+      <input type="text" name="prenom" value={personne.prenom} />
+    </label>
+
+    <label>
+      nationalite
+      <select name="nationalite">
+        {
+          Object.entries(PersonnesNationaliteOptions).map(([key, value]) => (
+            <option selected={value === personne.nationalite} value={value}>
+              {key}
+            </option>
+          ))
+        }
+      </select>
+    </label>
+
+    <fieldset class="col-span-2 block!">
+      <legend>Profession</legend>
+      {
+        Object.entries(PersonnesProfessionOptions).map(([key, value]) => (
+          <label>
+            <input
+              type="checkbox"
+              name="profession"
+              checked={personne.profession?.includes(value)}
+              value={value}
+            />
+            {key}
+          </label>
+        ))
+      }
+    </fieldset>
+    <button>{id ? "Modifier" : "Ajouter"}</button>
+  </form>
+</Layout>
