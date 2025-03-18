@@ -7,23 +7,23 @@ import Menu from './img/Menu.svg'
 import Croix from './img/Croix.svg'
 ---
 <div class="bg-Gris-Sombre text-Blanc font-Work-Sans shadow-xl fixed w-full z-50">
-    <div class="hidden lg:flex bg-Noir justify-end h-11 px-12 text-Gris-claire gap-6 items-center text-sm">
-        <nav class="flex gap-12 uppercase">
+    <div class="flex bg-Noir justify-end h-6 lg:h-11 px-12 text-Gris-claire gap-6 items-center text-sm">
+        <nav class="hidden lg:flex gap-12 uppercase">
             <a>à propos</a>
             <a>aide</a>
             <a>paramétre</a>
         </nav>
-        <div class="bg-Gris-claire w-0.5 h-3"></div>
-        <div class="flex gap-1 items-center">
+        <div class="bg-Gris-claire w-0.5 h-3 hidden lg:block"></div>
+        <div class="hidden lg:flex gap-1 items-center">
             <Image src={Planette} class="w-4 h-4" alt="Langue" />
             <p>FR</p>
             <Image src={Arrow} class="w-2.5" alt="Choix" />
         </div>
     </div>
-    <div class="flex justify-between items-center px-12 h-20">
-        <div class="flex items-center gap-3">
-            <Image src={IconePrincipal} class="w-12" alt="Main Icone" />
-            <h1 class="uppercase font-semibold text-3xl">Syminty</h1>
+    <div class="flex justify-between items-center px-5 lg:px-12 h-12 lg:h-20">
+        <div class="flex items-center gap-2 lg:gap-3">
+            <Image src={IconePrincipal} class="w-7 lg:w-12" alt="Main Icone" />
+            <h1 class="uppercase font-semibold text-xl lg:text-3xl">Syminty</h1>
         </div>
         <nav class="hidden lg:flex gap-10 items-center">
             <a>Musique</a>
@@ -33,7 +33,7 @@ import Croix from './img/Croix.svg'
             <button class="bg-Gris uppercase p-2">Créer un compte</button>
         </nav>
         <button class="lg:hidden block">
-            <Image src={Menu} class="w-12" alt="Main Icone" />
+            <Image src={Menu} class="w-5" alt="Main Icone" />
         </button>
     </div>
 </div>
