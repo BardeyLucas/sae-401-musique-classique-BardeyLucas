@@ -5,3 +5,11 @@
         @apply text-purple-500 font-bold underline;
     }
 }
+
+@theme {
+    --color-Noir: #04001a;
+    --color-Gris-Sombre: #2d2b3b;
+    --color-Gris: #5f54a2;
+    --color-Gris-claire: #aeabbc;
+    --color-Blanc: #f9f9fa;
+}
