@@ -1,7 +1,10 @@
 ---
+import { Debug } from 'astro:components';
 import Layout from '../layouts/Layout.astro';
+const ListOeuvre = await Astro.locals.pb.collection('Oeuvre').getFullList();
+
 ---
 
 <Layout pageTitle="Accueil">
-	<h1>Bonjour !</h1>
+	<Debug {ListOeuvre}/>
 </Layout>
