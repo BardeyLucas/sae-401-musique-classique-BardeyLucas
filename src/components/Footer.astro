@@ -2,19 +2,19 @@
 import { Image } from "astro:assets";
 import IconePrincipal from "./img/IconePrincipal.svg";
 ---
-<div class="px-12 flex">
-    <div class="flex flex-1 items-center gap-3 h-24">
+<div class="px-5 lg:px-12 flex flex-col lg:flex-row">
+    <div class="flex flex-1 items-center gap-3 h-24 mt-5 mb-2 lg:my-0">
         <Image src={IconePrincipal} class="w-8" alt="Main Icone" />
         <h1 class="uppercase font-semibold font-Work-Sans text-xl">Syminty</h1>
     </div>
-    <nav class="flex flex-2 h-24 justify-center items-center gap-3 flex-col lg:flex-row">
-        <a>Plan du site</a>
-        <div class="bg-Gris-claire w-2 h-0.5"></div>
-        <a>Mentions légales</a>
-        <div class="bg-Gris-claire w-2 h-0.5"></div>
-        <a>Termes et conditions</a>
-        <div class="bg-Gris-claire w-2 h-0.5"></div>
-        <a>Cookies</a>
+    <nav class="flex flex-2 h-24 lg:justify-center items-left lg:items-center gap-2 lg:gap-3 flex-col lg:flex-row">
+        <a><span class="inline lg:hidden">- </span>Plan du site</a>
+        <div class="bg-Gris-claire w-2 h-0.5 hidden lg:block"></div>
+        <a><span class="inline lg:hidden">- </span>Mentions légales</a>
+        <div class="bg-Gris-claire w-2 h-0.5 hidden lg:block"></div>
+        <a><span class="inline lg:hidden">- </span>Termes et conditions</a>
+        <div class="bg-Gris-claire w-2 h-0.5 hidden lg:block"></div>
+        <a><span class="inline lg:hidden">- </span>Cookies</a>
     </nav>
     <div class="flex-1"></div>
 </div>
