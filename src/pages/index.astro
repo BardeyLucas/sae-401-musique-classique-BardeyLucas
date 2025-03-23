@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import type { InterpretationResponse, OeuvreResponse } from '../pocketbase-typegen';
 const ListOeuvre = await Astro.locals.pb.collection<OeuvreResponse<{
 	Interpretation: InterpretationResponse[];
-}>>('Oeuvre').getFullList({expand: 'Interpreation'});
+}>>('Oeuvre').getFullList({expand: 'Interpretation'});
 
 ---
 
