@@ -1,0 +1,20 @@
+---
+import { Image } from "astro:assets";
+import Piano from "./img/Piano.png";
+import Violon from "./img/Violon.png";
+import Orchestre from "./img/Orchestre.png";
+import Disc from "./img/Disc.png";
+import Calandrier from "./img/Calandrier.png";
+const { Intitule, CoverImage, CoverColor, Link } = Astro.props;
+---
+<a href={Link} class="bg-Gris-Sombre flex h-16 rounded-xl overflow-hidden">
+    <div class={`h-16 w-16 rounded-xl flex items-center justify-center ${CoverColor}`}>
+        {CoverImage == null && <Image src={Piano} class="w-10 h-10" alt="Piano"/>}
+        {CoverImage == 1 && <Image src={Piano} class="w-10 h-10" alt="Piano"/>}
+        {CoverImage == 2 && <Image src={Violon} class="w-10 h-10" alt="Violon"/>}
+        {CoverImage == 3 && <Image src={Orchestre} class="w-10 h-10" alt="Orchestre"/>}
+        {CoverImage == 4 && <Image src={Disc} class="w-10 h-10" alt="Disc"/>}
+        {CoverImage == 5 && <Image src={Calandrier} class="w-10 h-10" alt="Calandrier"/>}
+    </div>
+    <p class="px-2.5 h-auto flex items-center font-Hind-Vadodara text-base w-36">{Intitule}{Intitule == null && <span>PlaceHolder</span>}</p>
+</a>

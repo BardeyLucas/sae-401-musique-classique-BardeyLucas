@@ -1,6 +1,7 @@
 ---
 import { Debug } from 'astro:components';
 import Layout from '../layouts/Layout.astro';
+import MenuHome from '../components/MenuHome.astro';
 import type { InterpretationResponse, OeuvreResponse } from '../pocketbase-typegen';
 const ListOeuvre = await Astro.locals.pb.collection<OeuvreResponse<{
 	Interpretation: InterpretationResponse[];
@@ -9,5 +10,12 @@ const ListOeuvre = await Astro.locals.pb.collection<OeuvreResponse<{
 ---
 
 <Layout pageTitle="Accueil">
+	<nav class="flex gap-5 justify-center flex-wrap mb-12">
+		<MenuHome Link="#" Intitule="Genres Musicaux" CoverImage="1" CoverColor="bg-gradient-to-br from-[#CD04FF] to-[#3604FF]"/>
+		<MenuHome Link="#" Intitule="Artistes" CoverImage="3" CoverColor="bg-gradient-to-br from-[#FFC804] to-[#FF8C04]"/>
+		<MenuHome Link="#" Intitule="Orchestres" CoverImage="2" CoverColor="bg-gradient-to-br from-[#FF8C04] to-[#FF4004]"/>
+		<MenuHome Link="#" Intitule="Albums" CoverImage="4" CoverColor="bg-gradient-to-br from-[#00DAE8] to-[#00CE46]"/>
+		<MenuHome Link="#" Intitule="Événements" CoverImage="5" CoverColor="bg-gradient-to-br from-[#FA04FF] to-[#FF0422]"/>
+	</nav>
 	<!-- <Debug {ListOeuvre}/> -->
 </Layout>
