@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import NavDesktop from "../components/NavDesktop.astro";
+import Cover from "../components/Cover.astro";
 interface Props {
   pageTitle: string;
 }
@@ -29,7 +30,9 @@ const { pageTitle } = Astro.props;
       <nav class="w-80 min-h-screen lg:block hidden">
       <NavDesktop>
       </nav>
-      <div class="MiseEnPage">
+      <div class="MiseEnPage mt-[4.5rem] lg:mt-[7.75rem]">
+        <Cover/>
+        <!--replacer les textes-->
         <main class="pt-24 lg:pt-32 w-full text-Blanc px-5 lg:px-12">
           <slot/>
         </main>
@@ -41,7 +44,8 @@ const { pageTitle } = Astro.props;
   </body>
 </html>
 <style>
-  .MiseEnPage {
-    width: calc(100vw - 20rem);
-  }
+  @media screen and (min-width: 1024px) {
+    .MiseEnPage {width: calc(100vw - 20rem);}}
+  @media screen and (max-width: 1024px) {
+    .MiseEnPage {width: calc(100vw);}}
 </style>
