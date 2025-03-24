@@ -5,9 +5,10 @@ import type { InterpretationResponse, OeuvreResponse } from '../pocketbase-typeg
 const ListOeuvre = await Astro.locals.pb.collection<OeuvreResponse<{
 	Interpretation: InterpretationResponse[];
 }>>('Oeuvre').getFullList({expand: 'Interpretation'});
-
+import Cover from '../components/Cover.astro';
 ---
 
 <Layout pageTitle="Accueil">
-	<Debug {ListOeuvre}/>
+	<Cover/>
+	<!-- <Debug {ListOeuvre}/> -->
 </Layout>

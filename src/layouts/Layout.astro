@@ -29,14 +29,19 @@ const { pageTitle } = Astro.props;
       <nav class="w-80 min-h-screen lg:block hidden">
       <NavDesktop>
       </nav>
-      <div>
-        <main class="pt-24 lg:pt-32 text-Blanc px-5 lg:px-12">
+      <div class="MiseEnPage">
+        <main class="pt-24 lg:pt-32 w-full text-Blanc px-5 lg:px-12">
           <slot/>
         </main>
-        <footer class="bg-Gris-Sombre text-Blanc flex-col w-full lg:w-[calc(100vw-20rem)] font-Hind-Vadodara">
+        <footer class="bg-Gris-Sombre text-Blanc flex-col w-full font-Hind-Vadodara">
         <Footer>
         </footer>
       </div>
     </div>
   </body>
 </html>
+<style>
+  .MiseEnPage {
+    width: calc(100vw - 20rem);
+  }
+</style>
