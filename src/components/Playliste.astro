@@ -1,0 +1,54 @@
+---
+import ImgPb from "./ImgPb.astro";
+const ListOeuvre = (await Astro.locals.pb.collection("Oeuvre").getFullList()).slice(0, 8);
+export const prerender = false;
+const { Titre, Description } = Astro.props;
+---
+
+<div>
+  {Titre == null && <h1 class="font-Work-Sans font-medium text-4xl">Découvrir nos playlist</h1>}
+  {Titre != null && <h1 class="font-Work-Sans font-medium text-4xl">{Titre}</h1>}
+  {Description != null && <p class="font-Hind-Vadodara font-medium text-2xl mt-2.5">{Description}</p>}
+  <nav class="flex gap-12 overflow-x-scroll mt-5 scrollBarCarousel">
+    {
+      ListOeuvre.map((oeuvre) => (
+        <a>
+          <ImgPb
+            record={oeuvre}
+            field="Cover"
+            alt="Image de l'oeuvre"
+            classImg="min-w-72 h-72 object-cover"
+          />
+          <p>{oeuvre.Titre}</p>
+        </a>
+      ))
+    }
+  </nav>
+</div>
+<style>
+    .scrollBarCarousel::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    /* Track */
+    .scrollBarCarousel::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    .scrollBarCarousel::-webkit-scrollbar-thumb {
+        background: #5F54A2; 
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    .scrollBarCarousel::-webkit-scrollbar-thumb:hover {
+        background: #8278bd; 
+    }
+
+    /* Handle on click */
+    .scrollBarCarousel::-webkit-scrollbar-thumb:active {
+        background: #422cbf; 
+    }
+</style>
