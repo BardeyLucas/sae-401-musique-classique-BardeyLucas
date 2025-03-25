@@ -1,0 +1,14 @@
+---
+import { Debug } from 'astro:components';
+import Layout from '../../layouts/Layout.astro';
+import type { CompositeurResponse, OeuvreResponse, InterpretationResponse, FormationResponse } from '../../pocketbase-typegen';
+import Playliste from '../../components/Playliste.astro';
+export const prerender = false;
+const id = Astro.params.id;
+
+---
+
+<Layout pageTitle="Compositeurs" titleCover="Listes des compositeurs" Artiste="" Description="Découvrer si dessous toutes les compositeurs">
+	<Playliste But="Compositeur" Titre="Compositeurs pour vous" Description="Fait sur-mesure en nous basant sur vos goûts musicaux."/>
+    <!-- <Debug {oeuvre}/> -->
+</Layout>
