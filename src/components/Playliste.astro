@@ -6,6 +6,26 @@ export const prerender = false;
 const { Titre, Description, But } = Astro.props;
 ---
 
+{But == "Oeuvre" && <div class="mb-12">
+  {Titre == null && <h1 class="font-Work-Sans font-medium text-4xl">Découvrir nos playlist</h1>}
+  {Titre != null && <h1 class="font-Work-Sans font-medium text-4xl">{Titre}</h1>}
+  {Description != null && <p class="font-Hind-Vadodara font-medium text-2xl mt-2.5">{Description}</p>}
+  <nav class="flex gap-12 overflow-x-scroll mt-5 scrollBarCarousel">
+    {
+      ListOeuvre.map((oeuvre) => (
+        <a href={`/Oeuvre/${oeuvre.id}`} >
+          <ImgPb
+            record={oeuvre}
+            field="Cover"
+            alt="Image de l'oeuvre"
+            classImg="min-w-72 h-72 object-cover"
+          />
+          <p>{oeuvre.Titre}</p>
+        </a>
+      ))
+    }
+  </nav>
+</div>}
 {But == "Compositeur" && <div class="mb-12">
   {Titre == null && <h1 class="font-Work-Sans font-medium text-4xl">Découvrir nos playlist</h1>}
   {Titre != null && <h1 class="font-Work-Sans font-medium text-4xl">{Titre}</h1>}
@@ -21,26 +41,6 @@ const { Titre, Description, But } = Astro.props;
             classImg="min-w-72 h-72 object-cover"
           />
           <p class="my-2">{compositeur.Prenom}&nbsp;{compositeur.Nom}</p>
-        </a>
-      ))
-    }
-  </nav>
-</div>}
-{But == "Oeuvre" && <div class="mb-12">
-  {Titre == null && <h1 class="font-Work-Sans font-medium text-4xl">Découvrir nos playlist</h1>}
-  {Titre != null && <h1 class="font-Work-Sans font-medium text-4xl">{Titre}</h1>}
-  {Description != null && <p class="font-Hind-Vadodara font-medium text-2xl mt-2.5">{Description}</p>}
-  <nav class="flex gap-12 overflow-x-scroll mt-5 scrollBarCarousel">
-    {
-      ListOeuvre.map((oeuvre) => (
-        <a>
-          <ImgPb
-            record={oeuvre}
-            field="Cover"
-            alt="Image de l'oeuvre"
-            classImg="min-w-72 h-72 object-cover"
-          />
-          <p>{oeuvre.Titre}</p>
         </a>
       ))
     }

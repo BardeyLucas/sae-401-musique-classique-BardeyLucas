@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import type { OeuvreResponse } from '../../pocketbase-typegen';
+export const prerender = false;
+const id = Astro.params.id;
+const oeuvre = await Astro.locals.pb
+    .collection<OeuvreResponse>('oeuvre').getOne(id!);
+---
+
+<Layout pageTitle="Mentions Légales" showCover={false}>
+    <p>{oeuvre.Titre}</p>
+</Layout>
