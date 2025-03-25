@@ -7,6 +7,6 @@ const oeuvre = await Astro.locals.pb
     .collection<OeuvreResponse>('oeuvre').getOne(id!);
 ---
 
-<Layout pageTitle="Mentions Légales" showCover={false}>
+<Layout pageTitle="Mentions Légales" >
     <p>{oeuvre.Titre}</p>
 </Layout>
