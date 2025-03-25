@@ -46,11 +46,32 @@ export type AuthSystemFields<T = never> = {
 
 // Record types for each collection
 
+export enum CompositeurNationaliteOptions {
+	"FR" = "FR",
+	"EN" = "EN",
+	"US" = "US",
+	"AL" = "AL",
+	"IT" = "IT",
+	"AUT" = "AUT",
+	"RU" = "RU",
+	"HONG" = "HONG",
+	"TCHE" = "TCHE",
+	"BEL" = "BEL",
+	"POL" = "POL",
+}
 export type CompositeurRecord = {
+	Date_de_deces?: IsoDateString
+	Date_de_naissance?: IsoDateString
+	Nationalite?: CompositeurNationaliteOptions[]
+	Portrait?: string
+	Prenom?: string
 	id: string
 }
 
 export type FormationRecord = {
+	Chef_orchestre?: string
+	Nom?: string
+	annee_creation?: IsoDateString
 	id: string
 }
 
@@ -63,14 +84,56 @@ export type ImagesSliderRecord = {
 }
 
 export type InterpretationRecord = {
+	Date_enregistrement?: IsoDateString
+	Formation?: RecordIdString
+	Offre?: RecordIdString[]
+	duree?: number
 	id: string
 }
 
+export enum OeuvreGenreOptions {
+	"Baroque" = "Baroque",
+	"Classique" = "Classique",
+	"Romantique" = "Romantique",
+	"Pré-baroque" = "Pré-baroque",
+	"Médiéval" = "Médiéval",
+	"Impressionnisme" = "Impressionnisme",
+	"Post-romantisme" = "Post-romantisme",
+	"Modernisme" = "Modernisme",
+	"Néoclassicisme" = "Néoclassicisme",
+	"Minimalisme" = "Minimalisme",
+	"Musique contemporaine" = "Musique contemporaine",
+	"Musique sacrée" = "Musique sacrée",
+	"Opéra" = "Opéra",
+	"Opérette" = "Opérette",
+	"Messe" = "Messe",
+	"Oratorio" = "Oratorio",
+	"Symphonie" = "Symphonie",
+	"Musique de chambre" = "Musique de chambre",
+	"Ballet" = "Ballet",
+	"Musique expérimentale" = "Musique expérimentale",
+}
 export type OeuvreRecord = {
+	Annee_de_composition?: IsoDateString
+	Compositeur?: RecordIdString
+	Cover?: string
+	Description?: string
+	Genre?: OeuvreGenreOptions
+	Interpretation?: RecordIdString[]
+	Titre?: string
 	id: string
 }
 
+export enum OffreTypeOffreOptions {
+	"Physique" = "Physique",
+	"Gratuit" = "Gratuit",
+	"Achat" = "Achat",
+	"Abonnement" = "Abonnement",
+}
 export type OffreRecord = {
+	Plateforme?: RecordIdString
+	Prix?: number
+	Type_offre?: OffreTypeOffreOptions
 	id: string
 }
 
@@ -79,6 +142,9 @@ export type PageContentRecord = {
 }
 
 export type PlatformeRecord = {
+	Logo?: string
+	Nom?: string
+	URL?: string
 	id: string
 }
 
