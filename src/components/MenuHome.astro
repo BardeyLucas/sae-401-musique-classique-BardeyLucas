@@ -7,7 +7,7 @@ import Disc from "./img/Disc.png";
 import Calandrier from "./img/Calandrier.png";
 const { Intitule, CoverImage, CoverColor, Link } = Astro.props;
 ---
-<a href={Link} class="bg-Gris-Sombre flex h-16 rounded-xl overflow-hidden">
+<a href={Link} class=`bg-Gris-Sombre flex h-16 rounded-xl overflow-hidden ${CoverImage == 1 ? 'hover:opacity-50' : ''}`>
     <div class={`h-16 w-16 rounded-xl flex items-center justify-center ${CoverColor}`}>
         {CoverImage == null && <Image src={Piano} class="w-10 h-10" alt="Piano"/>}
         {CoverImage == 1 && <Image src={Piano} class="w-10 h-10" alt="Piano"/>}
