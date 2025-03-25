@@ -7,6 +7,8 @@ import alpinejs from '@astrojs/alpinejs';
 
 import node from '@astrojs/node';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -15,9 +17,7 @@ export default defineConfig({
 
   integrations: [alpinejs()],
 
-  adapter: node({
-    mode: 'standalone'
-  }),
+  adapter: netlify(),
 
   devToolbar: {enabled: false}
 });
