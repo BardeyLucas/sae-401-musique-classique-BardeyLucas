@@ -13,7 +13,7 @@ const oeuvre = await Astro.locals.pb
     });
 ---
 
-<Layout pageTitle={oeuvre.Titre} titleCover={oeuvre.Titre} Artiste=`${oeuvre.expand?.Compositeur?.Prenom} ${oeuvre.expand?.Compositeur?.Nom}`}>
+<Layout pageTitle={oeuvre.Titre} titleCover={oeuvre.Titre} Artiste=`${oeuvre.expand?.Compositeur?.Prenom} ${oeuvre.expand?.Compositeur?.Nom}`} Description={oeuvre.Description} Couverture={oeuvre.Cover}>
     <p>{oeuvre.Titre}</p>
     <p>{oeuvre}</p>
     <Debug {oeuvre}/>

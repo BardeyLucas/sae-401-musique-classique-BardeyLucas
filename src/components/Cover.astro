@@ -2,8 +2,12 @@
 interface Props {
   titleCover?: string;  
   Artiste?: string;  
+  Description?: string;  
+  Couverture?: string;  
 }
-const { titleCover, Artiste } = Astro.props;
+const { titleCover, Artiste, Description, Couverture } = Astro.props;
+import { Image } from 'astro:assets';
+import Lecteur from '../components/img/Lecteur.svg';
 ---
 <header class="screen bg-Gris bg-cover bg-right-top lg:-mt-1">
     <div class="w-full h-full imageDeFond grayscale mix-blend-multiply">
@@ -20,8 +24,10 @@ const { titleCover, Artiste } = Astro.props;
             { titleCover == null && <h1 class="font-Work-Sans font-bold text-4xl lg:text-6xl uppercase">Claudio Abbado</h1>}
             { Artiste != null && <h2 class="font-Work-Sans font-medium text-lg lg:text-3xl uppercase mt-1 lg:mt-2.5">{Artiste}</h2>}
             { Artiste == null && <h2 class="font-Work-Sans font-medium text-lg lg:text-3xl uppercase mt-1 lg:mt-2.5">Requiem pour Claudio Abbado</h2>}
-            <p class="lg:text-xl mt-1.5 lg:mt-4">À l'occasion du dixième anniversaire de la mort de Herbert von Karajan, les Berliner Philharmoniker rendent hommage à leur dernier maestro, dans sa ville natale, Salzbourg. <br/><br/>Lors de ce concert filmé dans la grande cathédrale de Salzbourg, la ville de Mozart, Claudio Abbado dirige le célèbre Requiem, en hommage à Karajan, son prédécesseur, dont l'interprétation de cette œuvre a fait date.</p>
-            <button class="bg-Blanc text-Noir font-Work-Sans font-medium uppercase text-lg lg:text-2xl p-2 lg:p-3 mt-2 lg:mt-5">Voir plus</button>
+            { Description != null && <p class="lg:text-xl mt-1.5 lg:mt-4">{Description}</p>}
+            { Description == null && <p class="lg:text-xl mt-1.5 lg:mt-4">À l'occasion du dixième anniversaire de la mort de Herbert von Karajan, les Berliner Philharmoniker rendent hommage à leur dernier maestro, dans sa ville natale, Salzbourg. <br/><br/>Lors de ce concert filmé dans la grande cathédrale de Salzbourg, la ville de Mozart, Claudio Abbado dirige le célèbre Requiem, en hommage à Karajan, son prédécesseur, dont l'interprétation de cette œuvre a fait date.</p>}
+            { Artiste == null && <button class="bg-Blanc text-Noir font-Work-Sans font-medium uppercase text-lg lg:text-2xl p-2 lg:p-3 mt-2 lg:mt-5">Voir plus</button>}
+            { Artiste != null && <button class="p-2 lg:p-3 mt-2 lg:mt-5"><Image src={Lecteur} class="w-15" alt="Choix" /></button>}
         </div>
     </div>
 </header>
