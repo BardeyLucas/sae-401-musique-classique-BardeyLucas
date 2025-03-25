@@ -1,7 +1,7 @@
 ---
 import ImgPb from "./ImgPb.astro";
-const ListOeuvre = (await Astro.locals.pb.collection("Oeuvre").getFullList({requestKey: null})).slice(0, 8);
-const ListCompositeur = (await Astro.locals.pb.collection("Compositeur").getFullList({requestKey: null})).slice(0, 8);
+const ListOeuvre = (await Astro.locals.pb.collection("Oeuvre").getFullList({requestKey: null}));
+const ListCompositeur = (await Astro.locals.pb.collection("Compositeur").getFullList({requestKey: null}));
 export const prerender = false;
 const { Titre, Description, But } = Astro.props;
 ---

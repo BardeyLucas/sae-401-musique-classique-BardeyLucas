@@ -1,15 +1,18 @@
 ---
 import { Debug } from 'astro:components';
 import Layout from '../../layouts/Layout.astro';
-import type { CompositeurResponse, OeuvreResponse } from '../../pocketbase-typegen';
+import type { CompositeurResponse, OeuvreResponse, InterpretationResponse, FormationResponse } from '../../pocketbase-typegen';
 export const prerender = false;
 const id = Astro.params.id;
 const oeuvre = await Astro.locals.pb
     .collection<
         OeuvreResponse<{
             Compositeur?: CompositeurResponse;
+            Interpretation?: InterpretationResponse<{
+                Formation?: FormationResponse;
+            }>[];
     }>>('oeuvre').getOne(id!, {
-        expand: 'Compositeur'
+        expand: 'Compositeur, Interpretation, Interpretation.Formation',
     });
 ---
 
@@ -19,5 +22,10 @@ const oeuvre = await Astro.locals.pb
         <button class=" bg-Blanc text-Noir font-Work-Sans font-medium uppercase text-lg lg:text-2xl p-2 lg:p-3 mt-2 lg:mt-5">Vour tous les concerts</button>
         <button class=" bg-Blanc text-Noir font-Work-Sans font-medium uppercase text-lg lg:text-2xl p-2 lg:p-3 mt-2 lg:mt-5">Acheter en physique</button>
     </nav>
+    {oeuvre.Interpretation != null && <nav class="mt-1">
+        {oeuvre.expand?.Interpretation?.map((interpretation) => (
+            <div class="bg-Gris border-y border-Noir">{interpretation.expand?.Formation?.Nom}</div>
+        ))}
+    </nav>}
     <!-- <Debug {oeuvre}/> -->
 </Layout>
