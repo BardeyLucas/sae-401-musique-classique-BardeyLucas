@@ -1,8 +1,9 @@
 ---
 interface Props {
   titleCover?: string;  
+  Artiste?: string;  
 }
-const { titleCover } = Astro.props;
+const { titleCover, Artiste } = Astro.props;
 ---
 <header class="screen bg-Gris bg-cover bg-right-top lg:-mt-1">
     <div class="w-full h-full imageDeFond grayscale mix-blend-multiply">
@@ -17,7 +18,8 @@ const { titleCover } = Astro.props;
         <div class="pl-5 lg:pl-28 w-11/12 lg:w-8/12 text-Blanc">
             { titleCover != null && <h1 class="font-Work-Sans font-bold text-4xl lg:text-6xl uppercase">{titleCover}</h1>}
             { titleCover == null && <h1 class="font-Work-Sans font-bold text-4xl lg:text-6xl uppercase">Claudio Abbado</h1>}
-            <h2 class="font-Work-Sans font-medium text-lg lg:text-3xl uppercase mt-1 lg:mt-2.5">Requiem pour Claudio Abbado</h2>
+            { Artiste != null && <h2 class="font-Work-Sans font-medium text-lg lg:text-3xl uppercase mt-1 lg:mt-2.5">{Artiste}</h2>}
+            { Artiste == null && <h2 class="font-Work-Sans font-medium text-lg lg:text-3xl uppercase mt-1 lg:mt-2.5">Requiem pour Claudio Abbado</h2>}
             <p class="lg:text-xl mt-1.5 lg:mt-4">À l'occasion du dixième anniversaire de la mort de Herbert von Karajan, les Berliner Philharmoniker rendent hommage à leur dernier maestro, dans sa ville natale, Salzbourg. <br/><br/>Lors de ce concert filmé dans la grande cathédrale de Salzbourg, la ville de Mozart, Claudio Abbado dirige le célèbre Requiem, en hommage à Karajan, son prédécesseur, dont l'interprétation de cette œuvre a fait date.</p>
             <button class="bg-Blanc text-Noir font-Work-Sans font-medium uppercase text-lg lg:text-2xl p-2 lg:p-3 mt-2 lg:mt-5">Voir plus</button>
         </div>

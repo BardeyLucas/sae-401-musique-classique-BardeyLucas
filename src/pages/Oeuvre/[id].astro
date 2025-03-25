@@ -1,12 +1,20 @@
 ---
+import { Debug } from 'astro:components';
 import Layout from '../../layouts/Layout.astro';
-import type { OeuvreResponse } from '../../pocketbase-typegen';
+import type { CompositeurResponse, OeuvreResponse } from '../../pocketbase-typegen';
 export const prerender = false;
 const id = Astro.params.id;
 const oeuvre = await Astro.locals.pb
-    .collection<OeuvreResponse>('oeuvre').getOne(id!);
+    .collection<
+        OeuvreResponse<{
+            Compositeur?: CompositeurResponse;
+    }>>('oeuvre').getOne(id!, {
+        expand: 'Compositeur'
+    });
 ---
 
-<Layout pageTitle={oeuvre.Titre} titleCover={oeuvre.Titre} >
+<Layout pageTitle={oeuvre.Titre} titleCover={oeuvre.Titre} Artiste=`${oeuvre.expand?.Compositeur?.Prenom} ${oeuvre.expand?.Compositeur?.Nom}`}>
     <p>{oeuvre.Titre}</p>
+    <p>{oeuvre}</p>
+    <Debug {oeuvre}/>
 </Layout>
