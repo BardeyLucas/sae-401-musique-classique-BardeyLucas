@@ -1,11 +1,13 @@
 ---
 import ImgPb from "./ImgPb.astro";
 const ListOeuvre = (await Astro.locals.pb.collection("Oeuvre").getFullList()).slice(0, 8);
+const ListCompositeur = (await Astro.locals.pb.collection("Compositeur").getFullList()).slice(0, 8);
 export const prerender = false;
-const { Titre, Description } = Astro.props;
+const { Titre, Description, But } = Astro.props;
 ---
 
-<div>
+<div class="mb-12">
+{But == ListOeuvre &&
   {Titre == null && <h1 class="font-Work-Sans font-medium text-4xl">Découvrir nos playlist</h1>}
   {Titre != null && <h1 class="font-Work-Sans font-medium text-4xl">{Titre}</h1>}
   {Description != null && <p class="font-Hind-Vadodara font-medium text-2xl mt-2.5">{Description}</p>}
@@ -23,7 +25,7 @@ const { Titre, Description } = Astro.props;
         </a>
       ))
     }
-  </nav>
+  </nav>}
 </div>
 <style>
     .scrollBarCarousel::-webkit-scrollbar {
