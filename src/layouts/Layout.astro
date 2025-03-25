@@ -10,9 +10,11 @@ interface Props {
   Artiste?: string;
   Description?: string;
   Couverture?: string;
+  CompoNom?: string;
+  Nationalite?: string;
   showCover?: boolean; // Nouvelle prop optionnelle
 }
-const { pageTitle, titleCover, Artiste, Description, Couverture, showCover = true } = Astro.props;
+const { pageTitle, titleCover, Artiste, Description, Couverture, CompoNom, Nationalite, showCover = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -36,7 +38,7 @@ const { pageTitle, titleCover, Artiste, Description, Couverture, showCover = tru
       <NavDesktop>
       </nav>
       <div class="MiseEnPage mt-[4.5rem] lg:mt-[7.75rem]">
-        {showCover && <Cover titleCover={titleCover} Artiste={Artiste} Description={Description} Couverture={Couverture}/>}
+        {showCover && <Cover titleCover={titleCover} Artiste={Artiste} Description={Description} Couverture={Couverture} CompoNom={CompoNom} Nationalite={Nationalite}/>}
         <!--replacer les textes-->
         <main class="w-full text-Blanc px-5 lg:px-12">
           <slot/>

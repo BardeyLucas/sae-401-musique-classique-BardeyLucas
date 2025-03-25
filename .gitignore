@@ -26,3 +26,6 @@ pnpm-debug.log*
 #pocketbase 
 /pocketbase/*
 !/pocketbase/pb_migrations
+
+#netlify
+/.netlify

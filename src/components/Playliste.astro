@@ -33,7 +33,7 @@ const { Titre, Description, But } = Astro.props;
   <nav class="flex gap-12 overflow-x-scroll mt-5 scrollBarCarousel">
     {
       ListCompositeur.map((compositeur) => (
-        <a>
+        <a href={`/Compositeur/${compositeur.id}`}>
           <ImgPb
             record={compositeur}
             field="Portrait"
