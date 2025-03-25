@@ -18,6 +18,7 @@ const ListOeuvre = await Astro.locals.pb.collection<OeuvreResponse<{
 		<MenuHome Link="#" Intitule="Albums" CoverImage="4" CoverColor="bg-gradient-to-br from-[#00DAE8] to-[#00CE46]"/>
 		<MenuHome Link="#" Intitule="Événements" CoverImage="5" CoverColor="bg-gradient-to-br from-[#FA04FF] to-[#FF0422]"/>
 	</nav>
-	<Playliste but="Oeuvre" Titre="Musique pour vous" Description="Fait sur-mesure en nous basant sur vos goûts musicaux."/>
+	<Playliste But="Oeuvre" Titre="Musique pour vous" Description="Fait sur-mesure en nous basant sur vos goûts musicaux."/>
+	<Playliste But="Compositeur" Titre="Artiste pour vous" Description="Fait sur-mesure en nous basant sur vos goûts musicaux."/>
 	<!-- <Debug {ListOeuvre}/> -->
 </Layout>

@@ -1,13 +1,32 @@
 ---
 import ImgPb from "./ImgPb.astro";
-const ListOeuvre = (await Astro.locals.pb.collection("Oeuvre").getFullList()).slice(0, 8);
-const ListCompositeur = (await Astro.locals.pb.collection("Compositeur").getFullList()).slice(0, 8);
+const ListOeuvre = (await Astro.locals.pb.collection("Oeuvre").getFullList({requestKey: null})).slice(0, 8);
+const ListCompositeur = (await Astro.locals.pb.collection("Compositeur").getFullList({requestKey: null})).slice(0, 8);
 export const prerender = false;
 const { Titre, Description, But } = Astro.props;
 ---
 
-<div class="mb-12">
-
+{But == "Compositeur" && <div class="mb-12">
+  {Titre == null && <h1 class="font-Work-Sans font-medium text-4xl">Découvrir nos playlist</h1>}
+  {Titre != null && <h1 class="font-Work-Sans font-medium text-4xl">{Titre}</h1>}
+  {Description != null && <p class="font-Hind-Vadodara font-medium text-2xl mt-2.5">{Description}</p>}
+  <nav class="flex gap-12 overflow-x-scroll mt-5 scrollBarCarousel">
+    {
+      ListCompositeur.map((compositeur) => (
+        <a>
+          <ImgPb
+            record={compositeur}
+            field="Portrait"
+            alt="Image de l'oeuvre"
+            classImg="min-w-72 h-72 object-cover"
+          />
+          <p class="my-2">{compositeur.Prenom}&nbsp;{compositeur.Nom}</p>
+        </a>
+      ))
+    }
+  </nav>
+</div>}
+{But == "Oeuvre" && <div class="mb-12">
   {Titre == null && <h1 class="font-Work-Sans font-medium text-4xl">Découvrir nos playlist</h1>}
   {Titre != null && <h1 class="font-Work-Sans font-medium text-4xl">{Titre}</h1>}
   {Description != null && <p class="font-Hind-Vadodara font-medium text-2xl mt-2.5">{Description}</p>}
@@ -26,7 +45,7 @@ const { Titre, Description, But } = Astro.props;
       ))
     }
   </nav>
-</div>
+</div>}
 <style>
     .scrollBarCarousel::-webkit-scrollbar {
         height: 8px;

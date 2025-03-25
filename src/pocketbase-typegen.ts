@@ -63,6 +63,7 @@ export type CompositeurRecord = {
 	Date_de_deces?: IsoDateString
 	Date_de_naissance?: IsoDateString
 	Nationalite?: CompositeurNationaliteOptions[]
+	Nom?: string
 	Portrait?: string
 	Prenom?: string
 	id: string
