@@ -3,3 +3,5 @@
 # Mon mot de passe de vps ne fonctionnant plus, je n'aurais pas d'autres choix que de passé par netlify (excuser moi pour le dérangement)
 
 # Mon ordinateur est tombé hors service des mon arrivé ce mardi. Il est actuellement en réparation aurpès du service CRI. J'ai pu récupéré un ordinateur de prêt vers 9h45 et j'ai terminer d'installer tout ce dont j'avais besoin à 11h30. Mes problémes de push on été régles à 11h50 (sur le pc de prêt)
+
+# 2 à 3h de travail sur le projet sont rester sur le pc qui ne s'allume actuellement plus...
