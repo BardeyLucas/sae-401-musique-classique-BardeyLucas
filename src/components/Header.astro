@@ -21,7 +21,7 @@ import Croix from './img/Croix.svg'
         </div>
     </div>
     <div class="flex justify-between items-center px-5 lg:px-12 h-12 lg:h-20">
-        <a href="/" class="flex items-center gap-2 lg:gap-3">
+        <a href="/" class="flex items-center gap-2 lg:gap-3 hover:opacity-50">
             <Image src={IconePrincipal} class="w-7 lg:w-12" alt="Main Icone" />
             <h1 class="uppercase font-semibold text-xl lg:text-3xl">Syminty</h1>
         </a>
@@ -32,7 +32,7 @@ import Croix from './img/Croix.svg'
             <a>Se connecter</a>
             <button class="bg-Gris uppercase p-2">Créer un compte</button>
         </nav>
-        <button class="lg:hidden block" @click="menuOpen = !menuOpen">
+        <button class="lg:hidden block hover:opacity-50" @click="menuOpen = !menuOpen">
             <Image src={Menu} class="w-5" alt="Main Icone" x-show="!menuOpen"/>
             <Image src={Croix} class="w-5" alt="Main Icone" x-show="menuOpen"/>
         </button>
