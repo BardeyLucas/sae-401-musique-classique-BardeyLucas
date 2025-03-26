@@ -1,18 +1,23 @@
 ---
 import { Debug } from 'astro:components';
 import Layout from '../../layouts/Layout.astro';
-import type { CompositeurResponse, OeuvreResponse, InterpretationResponse, FormationResponse } from '../../pocketbase-typegen';
+import type { CompositeurResponse, OeuvreResponse, InterpretationResponse, FormationResponse, OffreResponse, PlatformeResponse } from '../../pocketbase-typegen';
 export const prerender = false;
+
+let MenuOffre = 0;
 const id = Astro.params.id;
 const oeuvre = await Astro.locals.pb
     .collection<
         OeuvreResponse<{
             Compositeur?: CompositeurResponse;
             Interpretation?: InterpretationResponse<{
-                Formation?: FormationResponse;
+            Formation?: FormationResponse;
+            Offre?: OffreResponse<{
+                    Platforme?: PlatformeResponse;
+                }>;
             }>[];
     }>>('oeuvre').getOne(id!, {
-        expand: 'Compositeur, Interpretation, Interpretation.Formation',
+        expand: 'Compositeur, Interpretation, Interpretation.Formation, Interpretation.Offre, Offre.Platforme',
     });
 ---
 
@@ -24,8 +29,35 @@ const oeuvre = await Astro.locals.pb
     </nav>
     {oeuvre.Interpretation != null && <nav class="mt-1">
         {oeuvre.expand?.Interpretation?.map((interpretation) => (
-            <div class="bg-Gris border-y border-Noir">{interpretation.expand?.Formation?.Nom}</div>
+            <div class="bg-Gris border-y border-Noir" x-data="{ MenuOffre: 0 }">
+                <p class="m-2">{interpretation.expand?.Formation?.Nom}</p>
+                <div class="flex gap-5">
+                    <button @click="MenuOffre = 0" class="bg-Blanc text-Noir p-2 font-bold m-5" :style="MenuOffre == 0 ? 'opacity: 0.6;' : 'opacity: 1;'">Achat numérique</button>
+                    <button @click="MenuOffre = 1" class="bg-Blanc text-Noir p-2 font-bold m-5" :style="MenuOffre == 1 ? 'opacity: 0.6;' : 'opacity: 1;'">Abonnement numérique</button>
+                    <button @click="MenuOffre = 2" class="bg-Blanc text-Noir p-2 font-bold m-5" :style="MenuOffre == 2 ? 'opacity: 0.6;' : 'opacity: 1;'">Gratuit</button>
+                </div>
+                {interpretation.expand?.Offre
+                    ?.filter((offre) => offre.Type_offre === 'Achat')
+                    .map((offre) => (
+                        <div x-show="MenuOffre == 0" class="flex gap-5">
+                            <p class="m-2">{offre.Prix} $</p>
+                        </div>
+                    ))}
+                {interpretation.expand?.Offre
+                    ?.filter((offre) => offre.Type_offre === 'Abonnement')
+                    .map((offre) => (
+                        <div x-show="MenuOffre == 1" class="flex gap-5">
+                            <p class="m-2">{offre.Prix} $</p>
+                        </div>
+                    ))}
+                {interpretation.expand?.Offre
+                    ?.filter((offre) => offre.Type_offre === 'Gratuit')
+                    .map((offre) => (
+                        <div x-show="MenuOffre == 2" class="flex gap-5">
+                            <p class="m-2">{offre.Prix} $</p>
+                        </div>
+                    ))}
+            </div>
         ))}
     </nav>}
-    <!-- <Debug {oeuvre}/> -->
 </Layout>
